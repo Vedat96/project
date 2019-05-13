@@ -16,6 +16,12 @@ Route::get('contact', 'PagesController@contact');
 Route::get('about', 'PagesController@about');
 Route::get('login', 'PagesController@login');
 Route::get('register', 'PagesController@register');
+Route::get('games', 'PagesController@games');
+Route::get('run', 'PagesController@run');
+Route::get('test', 'PagesController@test');
+
+
+
 
 
 

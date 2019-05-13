@@ -32,5 +32,20 @@ class PagesController extends Controller
 		return view('register');
 
 	}
+		public function games(){
+
+		return view('games');
+
+	}
+		public function run(){
+
+		return view('run');
+
+	}
+	public function test(){
+
+		return view('test');
+
+	}
 
 }
