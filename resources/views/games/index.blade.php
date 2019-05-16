@@ -4,34 +4,29 @@
 
 @section('content')
 
-<?php
-
-$games = 1
-?>
 
 	<h1>Game list</h1>
 
 	<body>
 
+		
+		
+		<div class= "col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class= "panel panel-primary">
+				
+				<div class= "panel-heading" style= "list-style-type:none;"> Games 
+					
+				<div class="panel-body">
 
-
-		<table style="width:100%">
-			<tr>
-			    <th>Name</th>
-			    <th>Genre(s)</th> 
-			    <th>Date</th>
-			</tr>
-			<tr>
-			    <td>{{$games['name']}}</td>
-			    <td>	Action, Adventure</td> 
-			    <td>	May 26, 2015</td>
-			</tr>
-			<tr>
-			    <td>A Bird Story</td>
-			    <td>	Adventure, RPG</td> 
-			    <td>November 7, 2014</td>
-			</tr>
-		</table>
+					<ul class="list-group">
+						@foreach($games as $game)
+						<li class="list-group-item"><a href="/games/{{$game->id}}" >{{ $game->name}}</a></li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+		</div>
+		
 
 		{{-- hierin komt een lijst van games. --}}
 		{{-- prijs per product,  subweb misschien --}}

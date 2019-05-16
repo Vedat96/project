@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+
+    public function role(){ // dit kan je alles noemen
+        return $this->belongsTo('App\Role');
+    }
+
+    public function games(){ // dit kan je alles noemen
+        return $this->hasMany('App\Game');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
+
 }
