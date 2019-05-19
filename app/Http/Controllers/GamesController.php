@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\game;
+use App\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +16,7 @@ class GamesController extends Controller
     public function index()
     {
         if(Auth::check()){ 
-            $games = game::where('user_id', Auth::user()->id)->get();
+            $games = Game::where('user_id', Auth::user()->id)->get();
         
             return view('games.index', ['games'=>$games]);
         }
@@ -45,14 +45,14 @@ class GamesController extends Controller
     {
         //
         if(Auth::check()){
-            $game = game::create([
+            $game = Game::create([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'user_id' => Auth::user()->id
             ]);
             if($game){
                 return redirect()->route('games.show', ['game'=> $game->id])
-                ->with('success' , 'game created successfully');
+                ->with('success' , 'Game created successfully');
             }
         }
         
@@ -63,13 +63,13 @@ class GamesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\game  $game
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(game $game)
+    public function show(Game $game)
     {
-        $game = game::find($game->id );
-        
+        $game = Game::find($game->id );
+        // $projects = 
 
         return view('games.show', [ 'game' => $game]);
     }
@@ -77,14 +77,14 @@ class GamesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\game  $game
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function edit(game $game)
+    public function edit(Game $game)
     {
         //
-        $game = game::find($game->id );
-         
+        $game = Game::find($game->id );
+        // $projects = 
 
         return view('games.edit', [ 'game' => $game]);
     }
@@ -93,21 +93,21 @@ class GamesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\game  $game
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, game $game)
+    public function update(Request $request, Game $game)
     {
 
         // save data 
-        $gameUpdate = game::where('id', $game->id)
+        $gameUpdate = Game::where('id', $game->id)
                                 ->update([
                                     'name' => $request->input('name'),
                                     'description' => $request->input('description')
                                 ]);
 
         if($gameUpdate){
-            return redirect()->route('games.show',['game'=>$game->id])->with('succes', 'game updated succesfully');
+            return redirect()->route('games.show',['game'=>$game->id])->with('succes', 'Game updated succesfully');
         }
         //redirect
         return back()->withInput();
@@ -116,19 +116,19 @@ class GamesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\game  $game
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(game $game)
+    public function destroy(Game $game)
     {
-        $findgame = game::find( $game->id);
-        if($findgame->delete()){
+        $findGame = Game::find( $game->id);
+        if($findGame->delete()){
             
             //redirect
             return redirect()->route('games.index')
-            ->with('success' , 'game deleted successfully');
+            ->with('success' , 'Game deleted successfully');
         }
-        return back()->withInput()->with('errors' , 'game could not be deleted');
+        return back()->withInput()->with('errors' , 'Game could not be deleted');
         
     }
 }

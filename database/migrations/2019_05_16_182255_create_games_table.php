@@ -21,7 +21,7 @@ class CreateGamesTable extends Migration
             $table->longText('genre')->nullable();
             $table->longText('developer')->nullable();
             $table->longText('os')->nullable();
-            $table->date('d-m-Y');
+            $table->date('d-m-Y')->nullable();
 
             $table->integer('user_id')->unsigned();
             $table->Foreign('user_id')->references('id')->on('users')->onDelete('cascade');

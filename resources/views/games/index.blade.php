@@ -5,28 +5,24 @@
 @section('content')
 
 
-	<h1>Game list</h1>
+<h1>Game list</h1>
 
-	<body>
-
+<div class= "col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+	<div class= "panel panel-primary">
 		
-		
-		<div class= "col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
-			<div class= "panel panel-primary">
-				
-				<div class= "panel-heading" style= "list-style-type:none;"> Games 
-					
-				<div class="panel-body">
+		<div class= "panel-heading" style= "list-style-type:none;"> Games 
+			<a class="pull-right btn btn-primary btn-sm" style= "padding-top: 0px" href="/games/create">Create new</a></div>
+		<div class="panel-body">
 
-					<ul class="list-group">
-						@foreach($games as $game)
-						<li class="list-group-item"><a href="/games/{{$game->id}}" >{{ $game->name}}</a></li>
-						@endforeach
-					</ul>
-				</div>
-			</div>
+			<ul class="list-group">
+				@foreach($games as $game)
+				<li class="list-group-item"><a href="/games/{{$game->id}}" >{{ $game->name}}</a></li>
+				@endforeach
+			</ul>
 		</div>
-		
+	</div>
+</div>
+
 
 		{{-- hierin komt een lijst van games. --}}
 		{{-- prijs per product,  subweb misschien --}}

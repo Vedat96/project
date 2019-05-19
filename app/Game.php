@@ -11,12 +11,12 @@ class Game extends Model
         protected $fillable = [ 
         'id',
     	'name',
-    	'descripton',
+    	'description',
+    	'user_id',
     	'genre',
     	'developer',
     	'os',
-    	'date'
-    	// 'user_id'
+    	'd-m-Y'
 
     ];
 
@@ -26,9 +26,11 @@ class Game extends Model
     public function users(){
         return $this->belongsToMany('App\User');
     }
-    public function games(){
+
+    public function game(){
         return $this->belongsTo('App\Game');
     }
+
     public function comments()
     {
         return $this->morphMany('App\Comment', 'commentable');
