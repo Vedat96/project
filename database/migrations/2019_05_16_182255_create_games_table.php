@@ -23,8 +23,8 @@ class CreateGamesTable extends Migration
             $table->longText('os')->nullable();
             $table->date('d-m-Y')->nullable();
 
-            $table->integer('user_id')->unsigned();
-            $table->Foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade')->unsigned();
+
             $table->timestamps();
         });
     }

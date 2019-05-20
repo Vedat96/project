@@ -37,7 +37,7 @@
                                           class="form-control autosize-target text-left"></textarea>
                             </div>
 
-<!--                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="game-genre">Genre<span class="required">*</span></label>
                                 <input   placeholder="Enter genre"  
                                           id="game-genre"
@@ -70,7 +70,7 @@
                                            />
                             </div>
 
-                            <div class="form-group">
+{{--                             <div class="form-group">
                                 <label for="game-date">Date<span class="required">*</span></label>
                                 <input   placeholder="Enter date"  
                                           id="game-date"
@@ -79,7 +79,7 @@
                                           spellcheck="false"
                                           class="form-control"
                                            />
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label for="game-date">Date<span class="required">*</span></label>
@@ -92,7 +92,7 @@
 
                             </div>
                             
- -->                            
+                            
                                 <div class="form-group">
                                 <input type="submit" class="btn btn-primary"
                                        value="Submit"/>

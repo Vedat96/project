@@ -117,8 +117,13 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+
+
                     </div>
                 </li>
+                
             @endguest
             </ul>
             

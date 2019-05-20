@@ -48,7 +48,12 @@ class GamesController extends Controller
             $game = Game::create([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
-                'user_id' => Auth::user()->id
+                'user_id' => Auth::user()->id,
+                'genre' => $request->input('genre'),
+                'developer' => $request->input('developer'),
+                'os' => $request->input('os'),
+                // 'd-m-Y' => date('d-m-Y') ???
+
             ]);
             if($game){
                 return redirect()->route('games.show', ['game'=> $game->id])
