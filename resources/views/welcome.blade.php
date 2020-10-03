@@ -3,35 +3,72 @@
 @section('title', 'Home')
 
 @section('content')
-	<div class="row">
-	    <div class="col-sm-8" style="background-color:lavender;">
-	    <h1>A-Games</h1>
-			<div class="block">  
-				<div class="block__content">   
-					<div class="video-embed-container video-embed-container--16x9 rs-snippet rs-snippet__twitch">  
-						<iframe width="640" height="360" src="https://player.twitch.tv/?autoplay=true&amp;muted=true&amp;time=0h0m0s&amp;channel=Karim_suus" frameborder="0">
-						</iframe>  
-					</div>   
-					<figure class="resized-image"> 
-						<img src="/images/horizontal_spacer.jpg" class="resized-image__img spacer--firefox-fix" alt=""> 
-					</figure>  
-				</div> 
-			</div>
-	    </div>
-	    <div class="col-sm-4" style="background-color:lavenderblush;">
 
-
-			<h4> Join our Discord server!</h4>
-			<iframe src="https://discordapp.com/widget?id=577443038444650506&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
-
-	    </div>
+<div class="row">
+    <div class="col-sm-8" style="background-color:lavender;">
+    <h1>A-Games</h1>
+		<div class="block">  
+			<div class="block__content">   
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="position:relative;z-index:1;">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<iframe src="https://player.twitch.tv/?channel=Karim_suus" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="700"></iframe><a href="https://www.twitch.tv/mnmbe?tt_content=text_link&tt_medium=live_embed" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">	</a>
+					    </div>
+				    	<div class="carousel-item">
+				    		<iframe src="https://player.twitch.tv/?channel=djwoodsgaming" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="700"></iframe><a href="https://www.twitch.tv/djwoodsgaming?tt_content=text_link&tt_medium=live_embed" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;"></a>
+							</figure> 
+				    	</div>
+				    	<div class="carousel-item">
+				    		<iframe src="https://player.twitch.tv/?channel=mnmbe" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="700"></iframe><a href="https://www.twitch.tv/mnmbe?tt_content=text_link&tt_medium=live_embed" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">
+				    	</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</div>			 
+		</div> 
+		<div class="container">
+	    @if(isset($details))
+	        <h5> The Search results for<b> {{ $query }} </b> are :</h5>
+		    <table class="table table-striped">
+		        <thead>
+		            <tr>
+		                <th>Name</th>
+		                <th>Description</th>
+		                <th>Genre</th>
+		                <th>Developer</th>
+		                <th>OS</th>
+		                <th>Date</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            @foreach($details as $user)
+		            <tr>
+		                <td>{{$user->name}}</td>
+		                <td>{{$user->description}}</td>
+		                <td>{{$user->genre}}</td>
+		                <td>{{$user->developer}}</td>
+		                <td>{{$user->os}}</td>
+		                <td>{{$user->date}}</td>
+		            </tr>
+		            @endforeach
+		        </tbody>
+		    </table>
+		    @endif
+		</div>
 	</div>
-	
+
+    <div class="col-sm-4" style="background-color:lavenderblush;">
+		<h4> Join our Discord server!</h4>
+		<iframe src="https://discordapp.com/widget?id=577443038444650506&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+
+    </div>
+</div>
 
 @endsection
-
-
-<!-- <head><meta charset="utf-8"><title>Twitch</title><meta property="og:site_name" content="Twitch"><meta property="fb:app_id" content="161273083968709"><meta property="twitter:site" content="@twitch"><meta property="og:title" content="Twitch"><meta property="og:description" content="Twitch is the world's leading video platform and community for gamers."><meta property="og:image" content="//www-cdn.jtvnw.net/images/twitch_logo3.jpg"><meta property="og:url" content="https://www.twitch.tv/"><meta property="og:type" content="website"><link rel="canonical" href="https://www.twitch.tv"><link rel="alternate" href="https://m.twitch.tv/"><meta name="description" content="Twitch is the world’s leading live streaming platform for gamers and the things we love. Watch and chat now with millions of other fans from around the world"><link rel="icon" href="https://static.twitchcdn.net/assets/favicon-75270f9df2b07174c23c.ico"><link rel="dns-prefetch" href="https://api.twitch.tv/"><link rel="dns-prefetch" href="https://passport.twitch.tv/"><link rel="dns-prefetch" href="https://static-cdn.jtvnw.net/"><link rel="preconnect" href="https://api.twitch.tv/"><link rel="preconnect" href="https://static-cdn.jtvnw.net/"><link rel="dns-prefetch" href="https://gql.twitch.tv/"><link rel="dns-prefetch" href="https://cvp.twitch.tv/"><link rel="dns-prefetch" href="https://irc-ws.chat.twitch.tv/"><link rel="dns-prefetch" href="https://player.twitch.tv/"><link rel="dns-prefetch" href="https://pubsub-edge.twitch.tv/"><link rel="dns-prefetch" href="https://static.twitchcdn.net/"><link rel="preconnect" href="https://gql.twitch.tv/"><link rel="preconnect" href="https://player.twitch.tv/"><link rel="preconnect" href="https://static.twitchcdn.net/"><link rel="preconnect" href="https://cvp.twitch.tv/"><script src="https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&amp;pvsid=3599436179908421&amp;correlator=3855022275312199&amp;output=json_html&amp;callback=googletag.impl.pubads.callbackProxy1&amp;impl=fifs&amp;adsid=AGt39rR3GdQYkIuBZVXTw4zgugIlOy8Ad-5yRpshcR5Q_0tbBPvsUxFlz996XcBMSu7hRb6Tq8ZFHUkXblBHiHGAZ0wmqVQ2aA&amp;jar=2019-5-13-12&amp;json_a=1&amp;eid=21062415&amp;vrg=2019050701&amp;guci=1.2.0.0.2.2.0.0&amp;plat=1%3A32776%2C2%3A32776%2C8%3A32776&amp;sc=1&amp;sfv=1-0-33&amp;iu_parts=3576121%2Ctwitch%2Cheadliner&amp;enc_prev_ius=%2F0%2F1%2F2&amp;prev_iu_szs=830x350&amp;prev_scp=pagetype%3Dhomepage&amp;eri=1&amp;cust_params=campaign%3D%26server%3Dproduction%26salt%3Dtrue%26kuid%3D%26loggedin%3Dtrue%26amznbid%3D0%26amznp%3D0&amp;cookie_enabled=1&amp;bc=31&amp;abxe=1&amp;lmt=1557751208&amp;dt=1557751208353&amp;dlt=1557751206093&amp;idt=2216&amp;frm=20&amp;biw=1536&amp;bih=722&amp;oid=3&amp;adxs=0&amp;adys=0&amp;adks=810344973&amp;ucis=1&amp;ifi=1&amp;u_tz=120&amp;u_his=4&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_nplug=3&amp;u_nmime=4&amp;u_sd=1.25&amp;flash=0&amp;url=https%3A%2F%2Fwww.twitch.tv%2F&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;dssz=20&amp;icsg=11012096&amp;std=0&amp;vis=1&amp;dmc=8&amp;scr_x=0&amp;scr_y=0&amp;psz=1296x350&amp;msz=1296x350&amp;blev=1&amp;bisch=1&amp;ga_vid=389950062.1557746575&amp;ga_sid=1557751208&amp;ga_hid=1387179595&amp;fws=128"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_rendering_2019050701.js"></script><script async="" src="//c.amazon-adsystem.com/aax2/apstag.js"></script><script charset="utf-8" crossorigin="anonymous" src="https://static.twitchcdn.net/assets/core.locales.nl-b536b8e6f23c4da944d2.js"></script><link rel="stylesheet" type="text/css" href="https://static.twitchcdn.net/assets/pages.front-dd45eb9e1190071428d4.css"><script charset="utf-8" crossorigin="anonymous" src="https://static.twitchcdn.net/assets/pages.front-24951f3910c557fd21f8.js"></script><script src="https://cvp.twitch.tv/2.10.2/mediaplayer.min.js" id="TwitchMediaPlayerModule"></script><link rel="stylesheet" type="text/css" href="https://static.twitchcdn.net/assets/twitch-player-ui-a4f8ef05e7a7aecba5bf.css"><script charset="utf-8" crossorigin="anonymous" src="https://static.twitchcdn.net/assets/twitch-player-ui-06d54742e4f55f765fed.js"></script><link rel="preload" href="https://adservice.google.nl/adsid/integrator.js?domain=www.twitch.tv" as="script"><script type="text/javascript" src="https://adservice.google.nl/adsid/integrator.js?domain=www.twitch.tv"></script><link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=www.twitch.tv" as="script"><script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=www.twitch.tv"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_2019050701.js" async=""></script><link rel="stylesheet" type="text/css" href="https://static.twitchcdn.net/assets/features.verify-email.components.verify-email-bar.component-ee22cb19c098c7799acc.css"><script charset="utf-8" crossorigin="anonymous" src="https://static.twitchcdn.net/assets/features.verify-email.components.verify-email-bar.component-6b2c98a586d8635f2b08.js"></script><link rel="stylesheet" type="text/css" href="https://static.twitchcdn.net/assets/pages.front.components.rec-feedback-button-e5d4ce5fe9eca9817f4a.css"><script charset="utf-8" crossorigin="anonymous" src="https://static.twitchcdn.net/assets/pages.front.components.rec-feedback-button-5a47898d0187dd1c4641.js"></script><link rel="stylesheet" type="text/css" href="https://static.twitchcdn.net/assets/features.whispers-1a62e849e9917714f949.css"><script charset="utf-8" crossorigin="anonymous" src="https://static.twitchcdn.net/assets/features.whispers-958e76bf35944ed77e3e.js"></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-33/html/container.html"><script src="chrome-extension://pkedcjkdefgpdelpbcmbmeomcjbeemfm/cast_sender.js"></script></head>
-
-
-<div class="player-ui"><div id="default-player"><div class="player-root"><div class="player-overlay pl-overlay__openstream" role="presentation"></div><div></div><div></div><div class="hover-display pl-hover-transition-out"><div><div class="pl-controls-top js-controls-top"><div class="player-streamstatus"><span><span><span class="player-tip" data-tip="liveStatus"></span><span class=""><svg class="player-streamstatus__icon player-streamstatus__icon--live qa-live-label" id="icon_live" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6,0 C-1.7,0, -1.7,12, 6,12 C13.7,12, 13.7,0, 6,0"></path></svg></span></span><span class="player-streamstatus__label">Live</span></span></div></div><div class="pl-controls-bottom pl-flex qa-controls-bottom"><div class="player-buttons-left"><button class="player-button qa-pause-play-button" id="" tabindex="-1" type="button"><span><span class="player-tip player-tip--aleft" data-tip="Pauzeren"></span><span class=""><svg id="icon_pause" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path d="M13 7h-3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1m7 0h-3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1"></path></svg></span></span></button><div class="pl-flex pl-flex__item--grow player-volume"><button type="button" class="player-button player-button--volume qa-control-volume"><span class="mute-button"><span class="player-tip" data-tip="Dempen"></span><svg class="player-icon-volumefull" id="icon_volumefull" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path d="M18 11.024v7.952c1.208-.913 2-2.348 2-3.976 0-1.628-.792-3.062-2-3.976zM18 7v2.04c2.363 1.06 4 3.325 4 5.96 0 2.634-1.637 4.9-4 5.96V23c3.49-1.17 6-4.309 6-8s-2.51-6.83-6-8zm-2 15a1.002 1.002 0 0 1-1.641.768L8.638 19H7a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h1.638l5.721-3.768A1.002 1.002 0 0 1 16 8v14z"></path></svg></span></button><div class="player-volume__slider-container"><div aria-valuemax="1" aria-valuemin="0" aria-valuenow="0.5" class="player-volume__slider player-slider" role="slider" tabindex="0"><div class="player-slider__left" style="width: 50%;"></div><div><div class="player-volume__slider-thumb" style="left: 50%;"></div></div></div></div></div></div><div class="player-buttons-right"><div class="pl-flex"><div class="pl-settings-container pl-flex pl-flex--verticalCenter"><span class="pl-pill pl-settings-banner--animateOut qa-settings-banner-span"></span></div><button class="qa-settings-button player-button--settings player-button" id="" tabindex="0" type="button"><span><span class="player-tip" data-tip="Instellingen"></span><span class="pl-settings-icon"><svg id="icon_settings" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path d="M14.97 18.395a3.37 3.37 0 1 1-.001-6.739 3.37 3.37 0 0 1 .002 6.738m7.3-4.915a48.16 48.16 0 0 0-.926-.127c-.037-.005-.071-.03-.081-.065a6.553 6.553 0 0 0-.615-1.48.09.09 0 0 1 .007-.1c.19-.247.377-.497.558-.74a.844.844 0 0 0-.083-1.091L20.12 8.863a.842.842 0 0 0-1.09-.081 47.8 47.8 0 0 0-.741.557.092.092 0 0 1-.1.01 6.415 6.415 0 0 0-1.481-.614.09.09 0 0 1-.064-.078c-.04-.308-.084-.63-.13-.93a.856.856 0 0 0-.828-.729h-1.43a.856.856 0 0 0-.83.728c-.044.3-.088.615-.128.925-.005.036-.03.07-.064.08a6.53 6.53 0 0 0-1.481.615.091.091 0 0 1-.1-.008 53.22 53.22 0 0 0-.74-.558.843.843 0 0 0-1.091.083L8.81 9.875a.843.843 0 0 0-.082 1.091c.18.244.369.494.558.74.023.03.026.07.009.1a6.504 6.504 0 0 0-.614 1.481.09.09 0 0 1-.077.064c-.308.04-.604.083-.905.128a.833.833 0 0 0-.7.83v1.43c0 .412.294.768.7.83.3.044.604.088.912.128.037.006.064.03.073.065.142.515.348 1.013.612 1.48a.09.09 0 0 1-.01.1c-.19.246-.377.495-.558.74a.843.843 0 0 0 .082 1.09l1.01 1.012a.844.844 0 0 0 1.092.082c.245-.18.493-.367.74-.558a.09.09 0 0 1 .1-.008c.466.264.964.47 1.48.614.035.01.06.04.065.076.04.31.084.607.129.907a.833.833 0 0 0 .829.703h1.43a.833.833 0 0 0 .829-.703c.045-.3.089-.604.129-.913a.088.088 0 0 1 .064-.073 6.544 6.544 0 0 0 1.48-.613.09.09 0 0 1 .1.01c.248.19.497.377.742.559a.84.84 0 0 0 1.089-.084l1.012-1.01a.844.844 0 0 0 .082-1.091 49.49 49.49 0 0 0-.558-.74.088.088 0 0 1-.008-.1c.264-.467.47-.965.613-1.48a.09.09 0 0 1 .077-.065c.308-.04.633-.083.934-.128a.858.858 0 0 0 .729-.83V14.31a.859.859 0 0 0-.73-.83"></path></svg></span></span></button></div><div class="player-menu"><div><div class="clips-disabled__hover"><button class="player-button pl-clips-button" id="" tabindex="0" type="button"><span><span class="player-tip" data-tip="Clip"></span><span class=""><svg id="icon_clips" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path d="M23 9.84l-.28-1.98a1.002 1.002 0 0 0-1.131-.852l-2.475.351 1.906 2.76L23 9.84zm-5.03.7l-1.905-2.76-2.97.42 1.904 2.76 2.971-.42zm-5.73.84l-1.904-2.76-2.474.35a1 1 0 0 0-.852 1.13l.28 1.98 4.95-.7zM23 14v8.083c0 .552-.447.918-1 .918H8c-.552 0-1-.366-1-.918v-8.084h5l-2 3h3l2-3h3l-2 3h3l2-3h2V14z"></path></svg></span></span></button></div></div></div><button class="player-button qa-fullscreen-button pl-mg-r-1 pl-button__fullscreen--tooltip-left" id="" tabindex="-1" type="button"><span><span class="player-tip" data-tip="Volledig scherm"></span><span class=""><svg id="icon_fullscreen" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path d="M12.414 10l1.293-1.293A1 1 0 0 0 13 7H8a1 1 0 0 0-1 1v5a1.002 1.002 0 0 0 1.707.707L10 12.414l2.293 2.293a.997.997 0 0 0 1.414 0l1-1a.999.999 0 0 0 0-1.414L12.414 10zM23 17v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-.707-1.707L17.586 20l-2.293-2.293a.999.999 0 0 1 0-1.414l1-1a.997.997 0 0 1 1.414 0L20 17.586l1.293-1.293A1 1 0 0 1 23 17z"></path></svg></span></span></button></div></div></div></div></div></div></div> -->

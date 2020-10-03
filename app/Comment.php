@@ -8,10 +8,10 @@ class Comment extends Model
 {
     protected $fillable = [ 
     	'body',
-    	'url',
+    	
     	'commentable_id',
         'commentable_type',
-        'user_id',
+        'user_id'
     ];
     public function commmentable()
     {

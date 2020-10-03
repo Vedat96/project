@@ -43,7 +43,9 @@ class User extends Authenticatable
     public function role(){ // dit kan je alles noemen
         return $this->belongsTo('App\Role');
     }
-
+    public function users(){ // dit kan je alles noemen
+        return $this->hasMany('App\User');
+    }
     public function games(){ // dit kan je alles noemen
         return $this->hasMany('App\Game');
     }

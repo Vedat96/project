@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGamesTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->longText('description')->nullable();
-
-            $table->longText('genre')->nullable();
-            $table->longText('developer')->nullable();
-            $table->longText('os')->nullable();
-            $table->date('date')->nullable();
+            $table->string('size')->nullable();
 
             $table->integer('user_id')->references('id')->on('users')->onDelete('cascade')->unsigned();
 
@@ -36,6 +32,6 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('posts');
     }
 }

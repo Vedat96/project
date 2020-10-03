@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -32,12 +31,16 @@ class PagesController extends Controller
 		return view('register');
 
 	}
-		public function games(){
+	public function games(){
 
 		return view('games');
 
 	}
-		public function run(){
+	public function comments(){
+		return view('comments');
+
+	}
+	public function run(){
 
 		return view('run');
 
@@ -46,6 +49,17 @@ class PagesController extends Controller
 
 		return view('test');
 
+	}
+	public function videos(){
+
+		return view('videos');
+
+	}
+	public function posts(){
+		return view('posts');
+	}
+	public function users(){
+		return view('users');
 	}
 
 }

@@ -6,6 +6,7 @@ use App\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class GamesController extends Controller
 {
     /**
@@ -13,13 +14,23 @@ class GamesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    public function search(Request $request)
     {
-        if(Auth::check()){ 
-            $games = Game::where('user_id', Auth::user()->id)->get();
-        
+        $search = $request->get('search');
+        $games = Game::all()->where('name', 'like', '%',$search, '%');
+        return view('search', [ 'games' => $games]); 
+    }
+
+    public function index(Game $games)
+    {
+            $games = Game::all();
+
+
+            // return view()->first(['search', 'games.index'], ['games'=>$games]);
+
             return view('games.index', ['games'=>$games]);
-        }
+        
         return view('auth.login');
     }
 
@@ -30,9 +41,15 @@ class GamesController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::check()){
+            if(Auth::user()->role_id == 1){
+        
+                return view('games.create');
+            }
+            return view('auth.login');
+        }
+        return view('auth.login');
 
-        return view('games.create');
     }
 
     /**
@@ -52,7 +69,7 @@ class GamesController extends Controller
                 'genre' => $request->input('genre'),
                 'developer' => $request->input('developer'),
                 'os' => $request->input('os'),
-                // 'd-m-Y' => date('d-m-Y') ???
+                'date' => $request->input('date')
 
             ]);
             if($game){
@@ -74,9 +91,15 @@ class GamesController extends Controller
     public function show(Game $game)
     {
         $game = Game::find($game->id );
-        // $projects = 
 
-        return view('games.show', [ 'game' => $game]);
+        $comments = $game->comments;
+
+        $comments = ($comments) ? $comments : [];
+
+
+        return view('games.show')
+            ->with('game', $game)
+            ->with('comments', $comments);
     }
 
     /**
@@ -89,9 +112,16 @@ class GamesController extends Controller
     {
         //
         $game = Game::find($game->id );
-        // $projects = 
 
-        return view('games.edit', [ 'game' => $game]);
+        if(Auth::check()){
+            if(Auth::user()->role_id == 1){
+        
+                return view('games.edit', [ 'game' => $game]);
+            }
+            return view('auth.login');
+        }
+        return view('auth.login');
+        
     }
 
     /**
@@ -105,17 +135,23 @@ class GamesController extends Controller
     {
 
         // save data 
-        $gameUpdate = Game::where('id', $game->id)
-                                ->update([
-                                    'name' => $request->input('name'),
-                                    'description' => $request->input('description')
-                                ]);
+        if(Auth::check()){
+            $gameUpdate = Game::where('id', $game->id)
+                                    ->update([
+                                        'name' => $request->input('name'),
+                                        'description' => $request->input('description'),
+                                        'genre' => $request->input('genre'),
+                                        'developer' => $request->input('developer'),
+                                        'os' => $request->input('os'),
+                                        'date' => $request->input('date')
+                                    ]);
 
-        if($gameUpdate){
-            return redirect()->route('games.show',['game'=>$game->id])->with('succes', 'Game updated succesfully');
+            if($gameUpdate){
+                return redirect()->route('games.show',['game'=>$game->id])->with('succes', 'Game updated succesfully');
+            }
+            //redirect
+            return back()->withInput();
         }
-        //redirect
-        return back()->withInput();
     }
 
     /**
